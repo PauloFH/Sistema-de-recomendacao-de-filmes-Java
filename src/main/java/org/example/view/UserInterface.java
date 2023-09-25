@@ -1,31 +1,39 @@
 package org.example.view;
 
+import org.apache.mahout.cf.taste.common.TasteException;
 import org.example.DTO.MoviesDTO;
+import org.example.RecomenderMovies;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class UserInterface {
 
     private final JFrame frame;
     private final JTextField userIDField;
+    private final JTextField numRecommendationsField; // Campo para especificar o número de recomendações
     private final JTextArea movieListArea;
 
     public UserInterface() {
         frame = new JFrame("Sistema de Recomendação de Filmes");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Tela para inserir o ID do usuário
+        // Tela para inserir o ID do usuário e o número de recomendações desejadas
         JPanel inputPanel = new JPanel(new FlowLayout());
         JLabel userIDLabel = new JLabel("Digite seu ID de usuário:");
         userIDField = new JTextField(10);
+        JLabel numRecommendationsLabel = new JLabel("Número de Recomendações:");
+        numRecommendationsField = new JTextField(3); // Campo para especificar o número de recomendações
         JButton submitButton = new JButton("Enviar");
         JButton recommendButton = new JButton("Calcular Recomendação");
 
         inputPanel.add(userIDLabel);
         inputPanel.add(userIDField);
+        inputPanel.add(numRecommendationsLabel);
+        inputPanel.add(numRecommendationsField);
         inputPanel.add(submitButton);
         inputPanel.add(recommendButton);
 
@@ -60,12 +68,13 @@ public class UserInterface {
         recommendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Obter o ID do usuário inserido
+                // Obter o ID do usuário inserido e o número de recomendações desejadas
                 String userID = userIDField.getText();
-                // Aqui você deve implementar a lógica para calcular a recomendação com base no ID do usuário
+                int numRecommendations = Integer.parseInt(numRecommendationsField.getText()); // Converter para int
+                // Aqui você deve implementar a lógica para calcular a recomendação com base no ID do usuário e no número de recomendações
                 // e exibi-la na área de texto 'movieListArea'.
                 // Suponha que você tenha uma função 'calculateRecommendation' para calcular as recomendações.
-                String recommendations = calculateRecommendation(userID);
+                String recommendations = calculateRecommendation(userID, numRecommendations);
 
                 // Exibir as recomendações na área de texto
                 movieListArea.setText(recommendations);
@@ -85,9 +94,16 @@ public class UserInterface {
     }
 
     // Função de exemplo para calcular recomendações (você deve implementar sua própria lógica)
-    private String calculateRecommendation(String userID) {
-        // Implemente a lógica para calcular as recomendações com base no ID do usuário aqui
-        return "Recomendações para o usuário " + userID + ":\n1. Filme A\n2. Filme B\n3. Filme C";
+    private String calculateRecommendation(String userID, int numRecommendations) {
+        RecomenderMovies rm = new RecomenderMovies();
+
+        try {
+            return rm.recomendation(Long.parseLong(userID), numRecommendations);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (TasteException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void show() {
