@@ -13,7 +13,7 @@ public class MoviesDTO {
             StringBuilder r = new StringBuilder();
         try {
             // Carregue o arquivo CSV que contém as avaliações dos usuários
-            BufferedReader ratingsReader = new BufferedReader(new FileReader("src/main/resources/treinamento.csv"));
+            BufferedReader ratingsReader = new BufferedReader(new FileReader("src/main/resources/filmes.csv"));
             String ratingsLine;
 
             // Estrutura de dados para armazenar as avaliações do usuário para cada filme
@@ -21,8 +21,8 @@ public class MoviesDTO {
 
             while ((ratingsLine = ratingsReader.readLine()) != null) {
                 String[] ratingsData = ratingsLine.split(",");
-                String csvUserId = ratingsData[0];
-                String movieId = ratingsData[1];
+                String csvUserId = ratingsData[1];
+                String movieId = ratingsData[0];
                 double rating = Double.parseDouble(ratingsData[2]); // Converte a avaliação para double
 
                 // Verifique se a avaliação pertence ao usuário desejado
@@ -34,7 +34,7 @@ public class MoviesDTO {
             ratingsReader.close();
 
             // Carregue o arquivo CSV que contém informações sobre os filmes
-            BufferedReader moviesReader = new BufferedReader(new FileReader("src/main/resources/movies.csv"));
+            BufferedReader moviesReader = new BufferedReader(new FileReader("src/main/resources/movies2.csv"));
             String moviesLine;
 
             while ((moviesLine = moviesReader.readLine()) != null) {
