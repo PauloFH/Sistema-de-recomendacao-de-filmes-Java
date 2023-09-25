@@ -11,16 +11,16 @@ Este é um sistema de recomendação de filmes simples desenvolvido em Java usan
 
 ## Pré-requisitos
 
-- Java (versão 8 ou superior)
+- Java (versão 17 ou superior)
 - Apache Mahout (incluído no projeto)
-- Arquivos CSV de dados de avaliação de filmes (`ratings.csv`) e informações sobre filmes (`movies.csv`)
+- Arquivos CSV de dados de avaliação de filmes (`filmes.csv`) e informações sobre filmes (`movies2.csv`)
 
 ## Como Usar
 
 1. Clone o repositório para o seu ambiente local:
 
 ```bash
-git clone https://github.com/seu-usuario/seu-projeto.git
+git clone [https://github.com/seu-usuario/seu-projeto.git](https://github.com/PauloFH/Sistema-de-recomendacao-de-filmes-Java.git)
 cd seu-projeto
 ```
 
@@ -41,6 +41,6 @@ java -cp .:lib/* org.example.view.UserInterface
 
 ## Personalização
 
-- Você pode personalizar a lógica de recomendação no arquivo `UserInterface.java`.
+- Você pode personalizar a lógica de recomendação no arquivo `RecomenderMovies.java`.
 - Substitua os arquivos CSV de dados de avaliação de filmes e informações sobre filmes pelos seus próprios dados, se necessário.
 
