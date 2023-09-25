@@ -5,9 +5,9 @@ Este é um sistema de recomendação de filmes simples desenvolvido em Java usan
 
 ## Funcionalidades
 
-- Inserir o ID do usuário.
 - Visualizar a lista de filmes e avaliações do usuário.
 - Calcular recomendações personalizadas para o usuário.
+- Retorna filmes que estão condizentes com os interesses do usuário
 
 ## Pré-requisitos
 
